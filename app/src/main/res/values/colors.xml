@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="grad_1">#539FBD</color>
-    <color name="grad_2">#539FBD</color>
     <color name="grad_3">#50514F</color>
-    <color name="grad_4">#CBD4C2</color>
+    <color name="grad_2">#539FBD</color>
     <color name="grad_5">#09BC8A</color>
+    <color name="grad_4">#CBD4C2</color>
+    <color name="colorPrimaryDark">#FFFFFF</color>
+    <color name="colorPrimary">#FFFFFF</color>
+    <color name="colorAccent">#FFFFFF</color>
+
 </resources>
