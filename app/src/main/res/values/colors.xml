@@ -2,6 +2,6 @@
 <resources>
     <color name="Grad1">#539FBD</color>
     <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="grad_3">#50514F</color>
     <color name="grad_2">#539FBD</color>
 </resources>
