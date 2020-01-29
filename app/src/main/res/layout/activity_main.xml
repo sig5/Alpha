@@ -8,5 +8,14 @@
     tools:context=".MainActivity"
     android:background="@drawable/ic_userinterface">
 
+    <androidx.cardview.widget.CardView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.273"></androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
