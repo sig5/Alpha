@@ -11,22 +11,23 @@ import java.util.List;
 
 public class Custom_adapter extends RecyclerView.Adapter<Custom_adapter.MyView> {
 
-    private List<String> list;
+    private List<Cricket_live_scores> list;
 
     public class MyView extends RecyclerView.ViewHolder {
 
-        public TextView textView;
+        public TextView textView,textView1;
 
         public MyView(View view) {
             super(view);
 
-            textView = (TextView) view.findViewById(R.id.text);
+            textView = (TextView) view.findViewById(R.id.team1);
+            textView1 = (TextView) view.findViewById(R.id.team2);
 
         }
     }
 
 
-    public Custom_adapter(List<String> horizontalList) {
+    public Custom_adapter(List<Cricket_live_scores> horizontalList) {
         this.list = horizontalList;
     }
 
@@ -41,7 +42,8 @@ public class Custom_adapter extends RecyclerView.Adapter<Custom_adapter.MyView> 
     @Override
     public void onBindViewHolder(final MyView holder, final int position) {
 
-        holder.textView.setText(list.get(position));
+        holder.textView.setText(list.get(position).team1);
+        holder.textView1.setText(list.get(position).team2);
 
     }
 
