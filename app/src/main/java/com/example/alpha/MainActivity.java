@@ -2,6 +2,7 @@ package com.example.alpha;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -14,21 +15,20 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.DataInputStream;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
+    RecyclerView recyclerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         data_fetcher("https://cricapi.com/api/cricket/?apikey=Bd8wF5XUVGRFmScoOnpJ5aEh93d2");
-        RecyclerView recyclerView=(RecyclerView) findViewById(R.id.recyclerview);
+         recyclerView=(RecyclerView) findViewById(R.id.recyclerview);
         ArrayList<String> a=new ArrayList<String>();
         a.add("India");
         a.add("Australia");
@@ -50,10 +50,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void data_fetcher(final String urlweb)
+    private void data_fetcher(final String url)
     {
     class data_fetch extends AsyncTask<Void,Void,String>
-    {String json;
+    {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -61,39 +61,50 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(Void... voids) {
-            StringBuilder builder = null;
             try {
-                URL url = new URL(urlweb);
-                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
-                builder = new StringBuilder();
-                while ((json = bufferedReader.readLine()) != null) {
-                    builder.append(json);
+                URL url_score = new URL(url);
+                HttpURLConnection urlConnection = (HttpURLConnection) url_score.openConnection();
+                try {
+                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+                    StringBuilder stringBuilder = new StringBuilder();
+                    String line;
+                    while ((line = bufferedReader.readLine()) != null) {
+                        stringBuilder.append(line).append("\n");
+                    }
+                    bufferedReader.close();
+                    System.out.println(stringBuilder.toString());
+                    return stringBuilder.toString();
                 }
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
+                finally{
+                    urlConnection.disconnect();
+                }
             }
-            return builder.toString().trim();
+            catch(Exception e) {
+                Log.e("ERROR", e.getMessage(), e);
+                return null;
+            }
+
         }
 
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            ArrayList<Cricket_live_scores> cricket_live_scores = null;
+
             try {
-                JSONArray jsonArray=new JSONArray(s);
-                for(int i=0;i<jsonArray.length();i++)
+                JSONObject reader=new JSONObject(s);
+                JSONArray live_score_array=reader.getJSONArray("data");
+                String[] mydata=new String[live_score_array.length()];
+                for(int i=0;i<live_score_array.length();i++)
                 {
-                    JSONObject jsonObject=jsonArray.getJSONObject(i);
-                    cricket_live_scores.add(jsonObject.getString(""));
+                    JSONObject jsonObject=live_score_array.getJSONObject(i);
+                     mydata[i]=jsonObject.getString("title");
                 }
+                Custom_adapter myadapter =new Custom_adapter(Arrays.asList(mydata));
+                recyclerView.setAdapter(myadapter);
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
 
         }
     }
