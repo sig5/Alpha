@@ -3,9 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="150dp"
+    android:layout_height="170dp"
     android:layout_margin="1dp"
-    app:cardBackgroundColor="#50514f"
     app:cardCornerRadius="7dp"
     app:cardElevation="7dp"
     app:contentPadding="7dp">
@@ -14,20 +13,11 @@
         android:id="@+id/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="top"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="20dp"
-        android:textColor="#cbd4c2"
+        android:layout_gravity="center"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="3dp"
         android:textSize="20dp"></TextView>
 
-    <TextView
-        android:id="@+id/text11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:layout_marginLeft="5dp"
-        android:layout_marginBottom="20dp"
-        android:textColor="#cbd4c2"
-        android:textSize="20dp"></TextView>
+
 
 </androidx.cardview.widget.CardView>
