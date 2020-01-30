@@ -9,6 +9,17 @@ import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -39,10 +50,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void data_fetcher(String url)
+    private void data_fetcher(final String urlweb)
     {
     class data_fetch extends AsyncTask<Void,Void,String>
-    {
+    {String json;
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -50,13 +61,40 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(Void... voids) {
-
-            return null;
+            StringBuilder builder = null;
+            try {
+                URL url = new URL(urlweb);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
+                builder = new StringBuilder();
+                while ((json = bufferedReader.readLine()) != null) {
+                    builder.append(json);
+                }
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return builder.toString().trim();
         }
 
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
+            ArrayList<Cricket_live_scores> cricket_live_scores = null;
+            try {
+                JSONArray jsonArray=new JSONArray(s);
+                for(int i=0;i<jsonArray.length();i++)
+                {
+                    JSONObject jsonObject=jsonArray.getJSONObject(i);
+                    cricket_live_scores.add(jsonObject.getString(""));
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+
         }
     }
     data_fetch data_fetch=new data_fetch();
