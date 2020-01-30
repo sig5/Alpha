@@ -3,8 +3,8 @@ import java.util.ArrayList;
 
 public class Cricket_live_scores
 {
-    ArrayList<String> team_1;
-    ArrayList<String> team_2;
-    ArrayList<String> score_1;
-    ArrayList<String> score_2;
+    String team_1;
+    String team_2;
+    String score_1;
+    String score_2;
 }
