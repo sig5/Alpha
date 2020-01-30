@@ -20,8 +20,8 @@ public class Custom_adapter extends RecyclerView.Adapter<Custom_adapter.MyView> 
         public MyView(View view) {
             super(view);
 
-            textView = (TextView) view.findViewById(R.id.text);
-            textView1 = (TextView) view.findViewById(R.id.text11);
+            textView = (TextView) view.findViewById(R.id.team1);
+            textView1 = (TextView) view.findViewById(R.id.team2);
 
         }
     }
