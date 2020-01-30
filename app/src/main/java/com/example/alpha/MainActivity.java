@@ -4,7 +4,9 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SnapHelper;
 
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -34,24 +36,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         data_fetcher("https://cricapi.com/api/cricket/?apikey=Bd8wF5XUVGRFmScoOnpJ5aEh93d2");
         RecyclerView recyclerView=(RecyclerView) findViewById(R.id.recyclerview);
-//        GridLayoutManager gridLayoutManager=new GridLayoutManager(getApplicationContext(),2);
-//        recyclerView.setLayoutManager(gridLayoutManager);
         ArrayList<String> a=new ArrayList<String>();
         a.add("India");
         a.add("Australia");
         a.add("England");
         Custom_adapter ca =new Custom_adapter(a);
-        recyclerView.setAdapter(ca);
-
-
-
-//        recyclerView = findViewById(R.id.recyclerview1);
 
         LinearLayoutManager RecyclerViewLayoutManager = new LinearLayoutManager(getApplicationContext());
 
         recyclerView.setLayoutManager(RecyclerViewLayoutManager);
-//        AddItemsToRecyclerViewArrayList();
-
         Custom_adapter RecyclerViewHorizontalAdapter = new Custom_adapter(a);
 
         LinearLayoutManager HorizontalLayout = new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false);
@@ -59,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView.setAdapter(RecyclerViewHorizontalAdapter);
 
+        SnapHelper linearSnapHelper = new LinearSnapHelper();
+        linearSnapHelper.attachToRecyclerView(recyclerView);
 
     }
 
