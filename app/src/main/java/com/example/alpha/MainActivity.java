@@ -29,25 +29,26 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         data_fetcher("https://cricapi.com/api/cricket/?apikey=Bd8wF5XUVGRFmScoOnpJ5aEh93d2");
          recyclerView=(RecyclerView) findViewById(R.id.recyclerview);
-        ArrayList<String> a=new ArrayList<String>();
-        a.add("India");
-        a.add("Australia");
-        a.add("England");
-        Custom_adapter ca =new Custom_adapter(a);
 
         LinearLayoutManager RecyclerViewLayoutManager = new LinearLayoutManager(getApplicationContext());
 
         recyclerView.setLayoutManager(RecyclerViewLayoutManager);
-        Custom_adapter RecyclerViewHorizontalAdapter = new Custom_adapter(a);
+//        Custom_adapter RecyclerViewHorizontalAdapter = new Custom_adapter(a);
 
         LinearLayoutManager HorizontalLayout = new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(HorizontalLayout);
 
-        recyclerView.setAdapter(RecyclerViewHorizontalAdapter);
+//        recyclerView.setAdapter(RecyclerViewHorizontalAdapter);
 
         SnapHelper linearSnapHelper = new PagerSnapHelper();
         linearSnapHelper.attachToRecyclerView(recyclerView);
 
+    }
+
+    public static String[] split_Score(String data)
+    {
+        String[] str = data.split(" v ");
+        return str;
     }
 
     private void data_fetcher(final String url)
@@ -90,6 +91,8 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
 
+            ArrayList<Cricket_live_scores> cls=new ArrayList<Cricket_live_scores>();
+
             try {
                 JSONObject reader=new JSONObject(s);
                 JSONArray live_score_array=reader.getJSONArray("data");
@@ -98,8 +101,10 @@ public class MainActivity extends AppCompatActivity {
                 {
                     JSONObject jsonObject=live_score_array.getJSONObject(i);
                      mydata[i]=jsonObject.getString("title");
+                     String[] teams=split_Score(mydata[i]);
+                     cls.add(new Cricket_live_scores(teams[0],teams[1]));
                 }
-                Custom_adapter myadapter =new Custom_adapter(Arrays.asList(mydata));
+                Custom_adapter myadapter =new Custom_adapter(cls);
                 recyclerView.setAdapter(myadapter);
 
             } catch (JSONException e) {
