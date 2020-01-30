@@ -9,14 +9,14 @@
     android:background="@drawable/ic_userinterface">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerview1"
+        android:id="@+id/recyclerview"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="300dp"
         android:layout_marginLeft="20sp"
         android:layout_marginRight="20sp"
         android:gravity="start"
         android:scrollbars="horizontal"
-        android:paddingTop="120sp"
+        android:paddingTop="10sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"

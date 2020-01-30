@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:cardElevation="7dp"
-    app:contentPadding="7dp"
-    app:cardCornerRadius="7dp"
+    android:layout_height="170dp"
     android:layout_margin="1dp"
-    >
+    app:cardCornerRadius="7dp"
+    app:cardElevation="7dp"
+    app:contentPadding="7dp">
 
     <TextView
         android:id="@+id/text"
@@ -18,5 +17,7 @@
         android:layout_marginTop="3dp"
         android:layout_marginBottom="3dp"
         android:textSize="20dp"></TextView>
+
+
 
 </androidx.cardview.widget.CardView>
