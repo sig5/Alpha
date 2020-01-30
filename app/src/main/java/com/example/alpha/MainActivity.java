@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSnapHelper;
+import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
 
@@ -52,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView.setAdapter(RecyclerViewHorizontalAdapter);
 
-        SnapHelper linearSnapHelper = new LinearSnapHelper();
+        SnapHelper linearSnapHelper = new PagerSnapHelper();
         linearSnapHelper.attachToRecyclerView(recyclerView);
 
     }

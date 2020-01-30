@@ -15,12 +15,13 @@ public class Custom_adapter extends RecyclerView.Adapter<Custom_adapter.MyView> 
 
     public class MyView extends RecyclerView.ViewHolder {
 
-        public TextView textView;
+        public TextView textView,textView1;
 
         public MyView(View view) {
             super(view);
 
             textView = (TextView) view.findViewById(R.id.text);
+            textView1 = (TextView) view.findViewById(R.id.text11);
 
         }
     }
@@ -42,6 +43,7 @@ public class Custom_adapter extends RecyclerView.Adapter<Custom_adapter.MyView> 
     public void onBindViewHolder(final MyView holder, final int position) {
 
         holder.textView.setText(list.get(position));
+        holder.textView1.setText(list.get(position));
 
     }
 
