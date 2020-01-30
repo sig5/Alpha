@@ -8,10 +8,22 @@
     tools:context=".MainActivity"
     android:background="@drawable/ic_userinterface">
 
-<androidx.recyclerview.widget.RecyclerView
-    android:id="@+id/my_recycler_view"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal"
-    android:scrollbars="horizontal"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginLeft="20sp"
+        android:layout_marginRight="20sp"
+        android:gravity="start"
+        android:scrollbars="horizontal"
+        android:paddingTop="10sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.268">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
