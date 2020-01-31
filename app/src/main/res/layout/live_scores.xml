@@ -78,6 +78,18 @@
             app:layout_constraintVertical_bias="1.0"
             tools:ignore="NotSibling" />
 
+        <TextView
+            android:id="@+id/stat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textSize="15sp"
+            android:textColor="#000000"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="112dp"
+            tools:ignore="MissingConstraints" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
