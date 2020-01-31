@@ -1,4 +1,6 @@
 package com.example.alpha;
+import java.util.ArrayList;
+
 
 public class Cricket_live_scores
 {
@@ -9,5 +11,4 @@ public class Cricket_live_scores
         this.team1=team1;
         this.team2=team2;
     }
-
 }
