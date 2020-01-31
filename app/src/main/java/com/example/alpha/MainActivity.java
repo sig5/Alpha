@@ -3,6 +3,8 @@ package com.example.alpha;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -38,7 +40,8 @@ import java.util.TreeMap;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_page);
-        data_fetcher("https://cricapi.com/api/cricket/?apikey=Bd8wF5XUVGRFmScoOnpJ5aEh93d2");
+        ProgressBar progressBar=findViewById(R.id.progress);
+        data_fetcher("https://cricapi.com/api/cricket/?apikey=Bd8wF5XUVGRFmScoOnpJ5aEh93d2",progressBar);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
 
             LinearLayoutManager RecyclerViewLayoutManager = new LinearLayoutManager(getApplicationContext());
@@ -75,7 +78,7 @@ import java.util.TreeMap;
             return str;
         }
 
-        private void data_fetcher(final String url)
+        private void data_fetcher(final String url, final ProgressBar progressBar)
         {
 
         class data_fetch extends AsyncTask<Void, Void, String>
@@ -89,6 +92,7 @@ import java.util.TreeMap;
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
+                progressBar.setVisibility(View.VISIBLE);
                 }
 
                 @Override
@@ -205,7 +209,8 @@ import java.util.TreeMap;
                 @Override
                 protected void onPostExecute(String s)
                 {Custom_adapter myadapter =new Custom_adapter(cls);
-                    recyclerView.setAdapter(myadapter);}
+                    recyclerView.setAdapter(myadapter);
+                progressBar.setVisibility(View.GONE);}
             }
             data_fetch data_fetch=new data_fetch();
             data_fetch.execute();
