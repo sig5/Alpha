@@ -15,12 +15,14 @@ public class Custom_adapter extends RecyclerView.Adapter<Custom_adapter.MyView> 
 
     public class MyView extends RecyclerView.ViewHolder {
 
-        public TextView textView,textView1;
+        public TextView textView,textView1,textView2;
 
         public MyView(View view) {
             super(view);
+
             textView = (TextView) view.findViewById(R.id.team1);
             textView1 = (TextView) view.findViewById(R.id.team2);
+            textView2 = (TextView) view.findViewById(R.id.stat);
         }
     }
 
@@ -42,6 +44,7 @@ public class Custom_adapter extends RecyclerView.Adapter<Custom_adapter.MyView> 
 
         holder.textView.setText(list.get(position).team1);
         holder.textView1.setText(list.get(position).team2);
+        holder.textView2.setText(list.get(position).stat);
 
     }
 
