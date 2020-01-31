@@ -2,11 +2,7 @@ package com.example.alpha;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.JsonReader;
 import android.util.Log;
-import android.util.Pair;
-import android.view.View;
-import android.widget.ProgressBar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,7 +15,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -36,15 +31,15 @@ import java.util.TreeMap;
         RecyclerView recyclerView;
         String stat,stat2;
 
-        TreeMap<String,String[]> map=new TreeMap<>();
-        TreeMap<String[],String> match_data =new TreeMap<>();
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.main_page);
-            ProgressBar progressBar=findViewById(R.id.progress);
-            data_fetcher("https://cricapi.com/api/cricket/?apikey=Bd8wF5XUVGRFmScoOnpJ5aEh93d2",progressBar);
-            recyclerView=(RecyclerView) findViewById(R.id.recyclerView);
+    TreeMap<String, String[]> map = new TreeMap<>();
+    TreeMap<String[], String> match_data = new TreeMap<>();
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.main_page);
+        data_fetcher("https://cricapi.com/api/cricket/?apikey=Bd8wF5XUVGRFmScoOnpJ5aEh93d2");
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
 
             LinearLayoutManager RecyclerViewLayoutManager = new LinearLayoutManager(getApplicationContext());
             recyclerView.setLayoutManager(RecyclerViewLayoutManager);
@@ -80,18 +75,20 @@ import java.util.TreeMap;
             return str;
         }
 
-        private void data_fetcher(final String url, final View view)
+        private void data_fetcher(final String url)
         {
 
-            class data_fetch extends AsyncTask<Void,Void,String>
-            {String s;
-                String[] unique_id=new String[100];
-                ArrayList<Cricket_live_scores> cls=new ArrayList<Cricket_live_scores>();
-                @Override
-                protected void onPreExecute() {
-                super.onPreExecute();
-                view.setVisibility(View.VISIBLE);
+        class data_fetch extends AsyncTask<Void, Void, String>
+        {
+            String s;
+            String[] unique_id = new String[100];
+            String[] mydata = new String[100];
+            JSONArray live_score_array;
+            ArrayList<Cricket_live_scores> cls = new ArrayList<Cricket_live_scores>();
 
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
                 }
 
                 @Override
@@ -208,12 +205,11 @@ import java.util.TreeMap;
                 @Override
                 protected void onPostExecute(String s)
                 {Custom_adapter myadapter =new Custom_adapter(cls);
-                    recyclerView.setAdapter(myadapter);
-                    view.setVisibility(View.GONE);}
+                    recyclerView.setAdapter(myadapter);}
             }
             data_fetch data_fetch=new data_fetch();
             data_fetch.execute();
-        }}
+        }
 
 
-
+}
