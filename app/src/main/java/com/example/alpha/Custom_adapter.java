@@ -15,14 +15,14 @@ public class Custom_adapter extends RecyclerView.Adapter<Custom_adapter.MyView> 
 
     public class MyView extends RecyclerView.ViewHolder {
 
-        public TextView textView,textView1,textView2;
+        public TextView textView, textView1, textView2;
 
         public MyView(View view) {
             super(view);
 
-            textView = (TextView) view.findViewById(R.id.team1);
-            textView1 = (TextView) view.findViewById(R.id.team2);
-            textView2 = (TextView) view.findViewById(R.id.stat);
+            textView = (TextView) view.findViewById(R.id.t1);
+            textView1 = (TextView) view.findViewById(R.id.t2);
+            textView2 = (TextView) view.findViewById(R.id.description);
         }
     }
 
@@ -34,7 +34,7 @@ public class Custom_adapter extends RecyclerView.Adapter<Custom_adapter.MyView> 
     @Override
     public MyView onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.live_scores, parent, false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.card, parent, false);
 
         return new MyView(itemView);
     }

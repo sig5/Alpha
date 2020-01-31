@@ -2,9 +2,9 @@ package com.example.alpha;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.JsonReader;
 import android.util.Log;
-import android.util.Pair;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -17,7 +17,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -34,14 +33,16 @@ import java.util.TreeMap;
         RecyclerView recyclerView;
         String stat,stat2;
 
-        TreeMap<String,String[]> map=new TreeMap<>();
-        TreeMap<String[],String> match_data =new TreeMap<>();
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_main);
-            data_fetcher("https://cricapi.com/api/cricket/?apikey=Bd8wF5XUVGRFmScoOnpJ5aEh93d2");
-            recyclerView=(RecyclerView) findViewById(R.id.recyclerview);
+    TreeMap<String, String[]> map = new TreeMap<>();
+    TreeMap<String[], String> match_data = new TreeMap<>();
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.main_page);
+        ProgressBar progressBar=findViewById(R.id.progress);
+        data_fetcher("https://cricapi.com/api/cricket/?apikey=Bd8wF5XUVGRFmScoOnpJ5aEh93d2",progressBar);
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
 
             LinearLayoutManager RecyclerViewLayoutManager = new LinearLayoutManager(getApplicationContext());
             recyclerView.setLayoutManager(RecyclerViewLayoutManager);
@@ -77,16 +78,21 @@ import java.util.TreeMap;
             return str;
         }
 
-        private void data_fetcher(final String url)
+        private void data_fetcher(final String url, final ProgressBar progressBar)
         {
 
-            class data_fetch extends AsyncTask<Void,Void,String>
-            {String s;
-                String[] unique_id=new String[100];
-                ArrayList<Cricket_live_scores> cls=new ArrayList<Cricket_live_scores>();
-                @Override
-                protected void onPreExecute() {
+        class data_fetch extends AsyncTask<Void, Void, String>
+        {
+            String s;
+            String[] unique_id = new String[100];
+            String[] mydata = new String[100];
+            JSONArray live_score_array;
+            ArrayList<Cricket_live_scores> cls = new ArrayList<Cricket_live_scores>();
+
+            @Override
+            protected void onPreExecute() {
                 super.onPreExecute();
+                progressBar.setVisibility(View.VISIBLE);
                 }
 
                 @Override
@@ -203,79 +209,12 @@ import java.util.TreeMap;
                 @Override
                 protected void onPostExecute(String s)
                 {Custom_adapter myadapter =new Custom_adapter(cls);
-                    recyclerView.setAdapter(myadapter);}
+                    recyclerView.setAdapter(myadapter);
+                progressBar.setVisibility(View.GONE);}
             }
             data_fetch data_fetch=new data_fetch();
             data_fetch.execute();
         }
 
-
-
-
-
-
-
-
-        private void data_fetcher_new(final String url)
-        {
-
-            class data_fetch_new extends AsyncTask<Void,Void,String>
-            {
-
-                @Override
-                protected void onPreExecute() {
-                    super.onPreExecute();
-                }
-
-                @Override
-                protected String doInBackground(Void... voids) {
-                    try {
-                        URL url_score = new URL(url);
-                        HttpURLConnection urlConnection = (HttpURLConnection) url_score.openConnection();
-                        try {
-                            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
-                            StringBuilder stringBuilder = new StringBuilder();
-                            String line;
-                            while ((line = bufferedReader.readLine()) != null) {
-                                stringBuilder.append(line).append("\n");
-                            }
-                            bufferedReader.close();
-//                            System.out.println(stringBuilder.toString());
-                            return stringBuilder.toString();
-                        }
-                        finally{
-                            urlConnection.disconnect();
-                        }
-                    }
-                    catch(Exception e) {
-                        Log.e("ERROR", e.getMessage(), e);
-                        return null;
-                    }
-                }
-
-                @Override
-                protected void onPostExecute(String s) {
-                    super.onPostExecute(s);
-
-
-
-
-                    try {
-                        JSONObject reader=new JSONObject(s);
-                        stat =reader.getString("stat");
-                        stat2=stat;
-
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-
-                }
-            }
-            data_fetch_new data_fetch=new data_fetch_new();
-            data_fetch.execute();
-            System.out.println("In 2nd func"+stat2);
-//            return stat;
-        }
 
 }
