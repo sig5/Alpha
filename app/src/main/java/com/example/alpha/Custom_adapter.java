@@ -15,7 +15,7 @@ public class Custom_adapter extends RecyclerView.Adapter<Custom_adapter.MyView> 
 
     public class MyView extends RecyclerView.ViewHolder {
 
-        public TextView textView,textView1,textView2;
+        public TextView textView, textView1, textView2;
 
         public MyView(View view) {
             super(view);
