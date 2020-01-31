@@ -26,6 +26,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
+import static com.example.alpha.string_functions.isStarted;
+import static com.example.alpha.string_functions.split_Score;
+
 public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
 
@@ -64,20 +67,7 @@ public class MainActivity extends AppCompatActivity {
         return null;
     }
 
-    public static String[] split_Score(String data) {
-        String[] str = data.split(" v ");
-        return str;
-    }
 
-    public static int isStarted(String[] teams) {
-        for (int i = 0; i < 2; i++) {
-            for (int j = 0; j < teams[i].length(); j++) {
-                if (teams[i].charAt(j) == '/' || teams[i].charAt(j) == '*')
-                    return 1;
-            }
-        }
-        return 0;
-    }
 
     private void data_fetcher(final String url) {
 
@@ -183,7 +173,6 @@ public class MainActivity extends AppCompatActivity {
                                 count++;
                             }
                         }
-
 
                     } catch (JSONException e) {
                         e.printStackTrace();
