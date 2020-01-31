@@ -9,7 +9,7 @@
     android:background="@drawable/ic_userinterface">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerview"
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:layout_marginLeft="20sp"
