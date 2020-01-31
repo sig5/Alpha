@@ -44,7 +44,46 @@ public class MainActivity extends AppCompatActivity {
         linearSnapHelper.attachToRecyclerView(recyclerView);
 
     }
+    public static int  search(String txt, String[] pat)
+    { for(String x:pat)
+    {
+        int M = x.length();
+        int N = txt.length();
+        for (int i = 0; i <= N - M; i++) {
 
+            int j;
+
+
+            for (j = 0; j < M; j++)
+                if (txt.charAt(i + j) != x.charAt(j))
+                    break;
+
+            if (j == M) // if pat[0...M-1] = txt[i, i+1, ...i+M-1]
+                return 1;
+        }
+    }
+        return 0;
+    }
+    public static int sub_search(String[]txt,String pat)
+    {
+        for(String x:txt){
+        int M = pat.length();
+        int N = x.length();
+        for (int i = 0; i <= N - M; i++) {
+
+            int j;
+
+
+            for (j = 0; j < M; j++)
+                if (x.charAt(i + j) != pat.charAt(j))
+                    break;
+
+            if (j == M) // if pat[0...M-1] = txt[i, i+1, ...i+M-1]
+                return 1;
+        }
+    }
+        return 0;
+    }
     public static String[] split_Score(String data)
     {
         String[] str = data.split(" v ");
@@ -90,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-
+            String[] check={"India","Australia","England","Pakistan","South Africa","New Zealand","Sri Lanka","Bangladesh","Zimbabve","Afghanistan","Ireland"};
             ArrayList<Cricket_live_scores> cls=new ArrayList<Cricket_live_scores>();
 
             try {
@@ -100,9 +139,18 @@ public class MainActivity extends AppCompatActivity {
                 for(int i=0;i<live_score_array.length();i++)
                 {
                     JSONObject jsonObject=live_score_array.getJSONObject(i);
-                     mydata[i]=jsonObject.getString("title");
+                     mydata[i]=jsonObject.getString("description");
+
                      String[] teams=split_Score(mydata[i]);
-                     cls.add(new Cricket_live_scores(teams[0],teams[1]));
+                     if(search(teams[0],check)==1||search(teams[1],check)==1) {
+
+                             teams[0]=teams[0].replace("&amp;", "&");
+                             teams[1]=teams[1].replace("&amp;", "&");
+
+
+                         cls.add(new Cricket_live_scores(teams[0], teams[1]));
+                         System.out.println(teams[0] + " " + teams[1]);
+                     }
                 }
                 Custom_adapter myadapter =new Custom_adapter(cls);
                 recyclerView.setAdapter(myadapter);
