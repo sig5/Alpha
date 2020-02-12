@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_cricket"
+        android:icon="@drawable/ic_cricket"
+        android:title="Cricket" />
+    <item
+        android:id="@+id/nav_football"
+        android:icon="@drawable/ic_football1"
+        android:title="Football" />
+    <item
+        android:id="@+id/nav_news"
+        android:icon="@drawable/ic_news_icon_16"
+        android:title="News" />
+</menu>
