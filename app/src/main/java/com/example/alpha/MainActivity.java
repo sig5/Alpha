@@ -6,10 +6,12 @@ import android.os.PersistableBundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import androidx.fragment.app.Fragment;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
@@ -43,14 +45,18 @@ public class MainActivity extends AppCompatActivity {
 
         BottomNavigationView bnv=findViewById(R.id.bottom_nav);
         bnv.setOnNavigationItemSelectedListener(navListener);
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment,new CricketFragment()).commit();
+        getSupportFragmentManager().beginTransaction().addToBackStack("F").
+                replace(R.id.fragment,new CricketFragment()).commit();
     }
+
     private BottomNavigationView.OnNavigationItemSelectedListener navListener=
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                     Fragment selectedFragment=null;
                     switch (menuItem.getItemId()){
+
+                        
                         case R.id.nav_cricket:
                             selectedFragment=new CricketFragment();
                             break;
@@ -61,7 +67,8 @@ public class MainActivity extends AppCompatActivity {
                             selectedFragment=new NewsFragment();
                             break;
                     }
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment,
+
+                    getSupportFragmentManager().beginTransaction().addToBackStack("F").replace(R.id.fragment,
                             selectedFragment).commit();
                     return true;
                 }

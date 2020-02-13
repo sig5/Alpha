@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -35,15 +34,17 @@ import static com.example.alpha.string_functions.isStarted;
 import static com.example.alpha.string_functions.split_Score;
 
 public class CricketFragment extends Fragment {
-    ProgressBar progressBar;
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // keep the fragment and all its data across screen rotation
+        setRetainInstance(true);
+
+    }
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.main_page,container,false);
-        progressBar=view.findViewById(R.id.progress);
-        data_fetcher("https://cricapi.com/api/cricket/?apikey=Bd8wF5XUVGRFmScoOnpJ5aEh93d2",progressBar);
-
-        return view;
+        return inflater.inflate(R.layout.main_page,container,false);
     }
     RecyclerView recyclerView;
 
@@ -52,7 +53,7 @@ public class CricketFragment extends Fragment {
     @Override
     public void onViewCreated(View view,Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        data_fetcher("https://cricapi.com/api/cricket/?apikey=Bd8wF5XUVGRFmScoOnpJ5aEh93d2");
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
 
         LinearLayoutManager RecyclerViewLayoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
@@ -83,7 +84,7 @@ public class CricketFragment extends Fragment {
 
 
 
-    private void data_fetcher(final String url, final View view) {
+    private void data_fetcher(final String url) {
 
         class data_fetch extends AsyncTask<Void, Void, String> {
             String s;
@@ -95,7 +96,6 @@ public class CricketFragment extends Fragment {
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                view.setVisibility(View.VISIBLE);
             }
 
             @Override
@@ -205,11 +205,9 @@ public class CricketFragment extends Fragment {
             protected void onPostExecute(String s) {
                 Custom_adapter myadapter = new Custom_adapter(cls);
                 recyclerView.setAdapter(myadapter);
-                view.setVisibility(View.GONE);
             }
         }
         data_fetch data_fetch = new data_fetch();
         data_fetch.execute();
     }
-
 }
