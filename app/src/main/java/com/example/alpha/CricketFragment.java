@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -34,10 +35,15 @@ import static com.example.alpha.string_functions.isStarted;
 import static com.example.alpha.string_functions.split_Score;
 
 public class CricketFragment extends Fragment {
+    ProgressBar progressBar;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.main_page,container,false);
+        View view=inflater.inflate(R.layout.main_page,container,false);
+        progressBar=view.findViewById(R.id.progress);
+        data_fetcher("https://cricapi.com/api/cricket/?apikey=Bd8wF5XUVGRFmScoOnpJ5aEh93d2",progressBar);
+
+        return view;
     }
     RecyclerView recyclerView;
 
@@ -46,7 +52,7 @@ public class CricketFragment extends Fragment {
     @Override
     public void onViewCreated(View view,Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        data_fetcher("https://cricapi.com/api/cricket/?apikey=Bd8wF5XUVGRFmScoOnpJ5aEh93d2");
+
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
 
         LinearLayoutManager RecyclerViewLayoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
@@ -77,7 +83,7 @@ public class CricketFragment extends Fragment {
 
 
 
-    private void data_fetcher(final String url) {
+    private void data_fetcher(final String url, final View view) {
 
         class data_fetch extends AsyncTask<Void, Void, String> {
             String s;
@@ -89,6 +95,7 @@ public class CricketFragment extends Fragment {
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
+                view.setVisibility(View.VISIBLE);
             }
 
             @Override
@@ -176,10 +183,10 @@ public class CricketFragment extends Fragment {
                             if (count >= 5)
                                 break;
                             String[] arr = (String[]) m.getValue();
-                            if (isStarted(arr) == 1) {
+//                            if (isStarted(arr) == 1) {
                                 cls.add(new Cricket_live_scores(arr[0], arr[1], arr[2]));
                                 count++;
-                            }
+//                            }
                         }
 
                     } catch (JSONException e) {
@@ -198,9 +205,11 @@ public class CricketFragment extends Fragment {
             protected void onPostExecute(String s) {
                 Custom_adapter myadapter = new Custom_adapter(cls);
                 recyclerView.setAdapter(myadapter);
+                view.setVisibility(View.GONE);
             }
         }
         data_fetch data_fetch = new data_fetch();
         data_fetch.execute();
     }
+
 }
