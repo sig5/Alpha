@@ -36,6 +36,7 @@ import static com.example.alpha.string_functions.split_Score;
 
 public class CricketFragment extends Fragment {
     ProgressBar progressBar;
+    ArrayList<Cricket_live_scores> cls=new ArrayList<>();
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -90,9 +91,7 @@ public class CricketFragment extends Fragment {
             String[] unique_id = new String[100];
             String[] mydata = new String[100];
             JSONArray live_score_array;
-            ArrayList<Cricket_live_scores> cls = new ArrayList<Cricket_live_scores>();
 
-            @Override
             protected void onPreExecute() {
                 super.onPreExecute();
                 view.setVisibility(View.VISIBLE);
@@ -100,106 +99,109 @@ public class CricketFragment extends Fragment {
 
             @Override
             protected String doInBackground(Void... voids) {
-                try {
-                    URL url_score = new URL(url);
-                    HttpURLConnection urlConnection = (HttpURLConnection) url_score.openConnection();
+                if (cls.size() == 0) {
                     try {
-                        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
-                        StringBuilder stringBuilder = new StringBuilder();
-                        String line;
-                        while ((line = bufferedReader.readLine()) != null) {
-                            stringBuilder.append(line).append("\n");
-                        }
-                        bufferedReader.close();
-//
-                        s = stringBuilder.toString();
-                    } finally {
-                        urlConnection.disconnect();
-                    }
-                } catch (Exception e) {
-                    Log.e("ERROR", e.getMessage(), e);
-                    return null;
-                }
-                {
-
-
-                    String[] check = {"India", "Australia", "England", "Pakistan", "South Africa", "New Zealand", "West Indies",
-                            "Sri Lanka", "Bangladesh", "Zimbabve", "Afghanistan", "Ireland"};
-                    Map<String, Integer> preference_Order = new HashMap<>();
-                    preference_Order.put("India", 1);
-                    preference_Order.put("Australia", 2);
-                    preference_Order.put("England", 3);
-                    preference_Order.put("Pakistan", 4);
-                    preference_Order.put("New Zealand", 5);
-                    preference_Order.put("South Africa", 6);
-                    preference_Order.put("West Indies", 7);
-                    preference_Order.put("Sri Lanka", 8);
-                    preference_Order.put("Bangladesh", 9);
-                    preference_Order.put("Zimbabwe", 10);
-                    preference_Order.put("Afghanistan", 11);
-                    preference_Order.put("Ireland", 12);
-
-
-                    try {
-                        JSONObject reader = new JSONObject(s);
-                        live_score_array = reader.getJSONArray("data");
-
-
-                        for (int i = 0; i < live_score_array.length(); i++) {
-                            JSONObject jsonObject = live_score_array.getJSONObject(i);
-                            mydata[i] = jsonObject.getString("description");
-                            unique_id[i] = jsonObject.getString("unique_id");
-
-
-                        }
-
-                        for (int i = 0; i < live_score_array.length(); i++) {
-                            String api = "https://cricapi.com/api/cricketScore/?apikey=Bd8wF5XUVGRFmScoOnpJ5aEh93d2&unique_id=" + unique_id[i];
-                            URL url_new = new URL(api);
-                            HttpURLConnection httpURLConnection = (HttpURLConnection) url_new.openConnection();
-                            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
-                            String details;
+                        URL url_score = new URL(url);
+                        HttpURLConnection urlConnection = (HttpURLConnection) url_score.openConnection();
+                        System.out.println(cls.size() + "=size");
+                        try {
+                            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
                             StringBuilder stringBuilder = new StringBuilder();
-                            while ((details = bufferedReader.readLine()) != null) {
-                                stringBuilder.append(details);
+                            String line;
+                            while ((line = bufferedReader.readLine()) != null) {
+                                stringBuilder.append(line).append("\n");
                             }
-                            JSONObject object = new JSONObject(stringBuilder.toString());
-                            String[] teams = split_Score(mydata[i]);
-                            String[] teams_final = new String[3];
-                            if (search(teams[0], check) != null && search(teams[1], check) != null) {
-                                teams[0] = teams[0].replace("&amp;", "&");
-                                teams[1] = teams[1].replace("&amp;", "&");
-                                teams_final[0] = teams[0];
-                                teams_final[1] = teams[1];
-                                teams_final[2] = object.getString("stat");
-                                String t1 = search(teams[0], check);
-                                String t2 = search(teams[1], check);
-                                map.put(Math.min(preference_Order.get(t1), preference_Order.get(t2)), teams_final);
+                            bufferedReader.close();
+//
+                            s = stringBuilder.toString();
+                        } finally {
+                            urlConnection.disconnect();
+                        }
+                    } catch (Exception e) {
+                        Log.e("ERROR", e.getMessage(), e);
+                        return null;
+                    }
+                    {
+
+
+                        String[] check = {"India", "Australia", "England", "Pakistan", "South Africa", "New Zealand", "West Indies",
+                                "Sri Lanka", "Bangladesh", "Zimbabve", "Afghanistan", "Ireland"};
+                        Map<String, Integer> preference_Order = new HashMap<>();
+                        preference_Order.put("India", 1);
+                        preference_Order.put("Australia", 2);
+                        preference_Order.put("England", 3);
+                        preference_Order.put("Pakistan", 4);
+                        preference_Order.put("New Zealand", 5);
+                        preference_Order.put("South Africa", 6);
+                        preference_Order.put("West Indies", 7);
+                        preference_Order.put("Sri Lanka", 8);
+                        preference_Order.put("Bangladesh", 9);
+                        preference_Order.put("Zimbabwe", 10);
+                        preference_Order.put("Afghanistan", 11);
+                        preference_Order.put("Ireland", 12);
+
+
+                        try {
+                            JSONObject reader = new JSONObject(s);
+                            live_score_array = reader.getJSONArray("data");
+
+
+                            for (int i = 0; i < live_score_array.length(); i++) {
+                                JSONObject jsonObject = live_score_array.getJSONObject(i);
+                                mydata[i] = jsonObject.getString("description");
+                                unique_id[i] = jsonObject.getString("unique_id");
+
+
                             }
 
-                        }
-                        int count = 0;
-                        for (Map.Entry m : map.entrySet()) {
-                            if (count >= 5)
-                                break;
-                            String[] arr = (String[]) m.getValue();
+                            for (int i = 0; i < live_score_array.length(); i++) {
+                                String api = "https://cricapi.com/api/cricketScore/?apikey=Bd8wF5XUVGRFmScoOnpJ5aEh93d2&unique_id=" + unique_id[i];
+                                URL url_new = new URL(api);
+                                HttpURLConnection httpURLConnection = (HttpURLConnection) url_new.openConnection();
+                                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
+                                String details;
+                                StringBuilder stringBuilder = new StringBuilder();
+                                while ((details = bufferedReader.readLine()) != null) {
+                                    stringBuilder.append(details);
+                                }
+                                JSONObject object = new JSONObject(stringBuilder.toString());
+                                String[] teams = split_Score(mydata[i]);
+                                String[] teams_final = new String[3];
+                                if (search(teams[0], check) != null && search(teams[1], check) != null) {
+                                    teams[0] = teams[0].replace("&amp;", "&");
+                                    teams[1] = teams[1].replace("&amp;", "&");
+                                    teams_final[0] = teams[0];
+                                    teams_final[1] = teams[1];
+                                    teams_final[2] = object.getString("stat");
+                                    String t1 = search(teams[0], check);
+                                    String t2 = search(teams[1], check);
+                                    map.put(Math.min(preference_Order.get(t1), preference_Order.get(t2)), teams_final);
+                                }
+
+                            }
+                            int count = 0;
+                            for (Map.Entry m : map.entrySet()) {
+                                if (count >= 5)
+                                    break;
+                                String[] arr = (String[]) m.getValue();
 //                            if (isStarted(arr) == 1) {
                                 cls.add(new Cricket_live_scores(arr[0], arr[1], arr[2]));
                                 count++;
 //                            }
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        } catch (MalformedURLException e) {
+                            e.printStackTrace();
+                        } catch (IOException e) {
+                            e.printStackTrace();
                         }
 
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    } catch (MalformedURLException e) {
-                        e.printStackTrace();
-                    } catch (IOException e) {
-                        e.printStackTrace();
                     }
-
                 }
-                return null;
-            }
+                    return null;
+                }
 
             @Override
             protected void onPostExecute(String s) {
