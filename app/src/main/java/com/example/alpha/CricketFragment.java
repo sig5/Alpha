@@ -2,7 +2,6 @@ package com.example.alpha;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,24 +36,20 @@ import static com.example.alpha.string_functions.split_Score;
 
 public class CricketFragment extends Fragment {
     ProgressBar progressBar;
-    ArrayList<Cricket_live_scores> cls = new ArrayList<>();
-
+    ArrayList<Cricket_live_scores> cls=new ArrayList<>();
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.main_page, container, false);
-        progressBar = view.findViewById(R.id.progress);
-        data_fetcher("https://mapps/cricbuzz.com/match/livematches", progressBar);
+        View view=inflater.inflate(R.layout.main_page,container,false);
+        progressBar=view.findViewById(R.id.progress);
+        data_fetcher("http://mapps.cricbuzz.com/cbzios/match/livematches",progressBar);
 
         return view;
     }
-
     RecyclerView recyclerView;
 
-    TreeMap<Integer, String[]> map = new TreeMap<>();
-
-    @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
+       @Override
+    public void onViewCreated(View view,Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
@@ -68,46 +63,47 @@ public class CricketFragment extends Fragment {
 
     }
 
+
+
+
+
     private void data_fetcher(final String url, final View view) {
 
         class data_fetch extends AsyncTask<Void, Void, String> {
             String s;
-
+            JSONArray matches_array;
             protected void onPreExecute() {
                 super.onPreExecute();
                 view.setVisibility(View.VISIBLE);
+
+
             }
 
             @Override
             protected String doInBackground(Void... voids) {
-                CricBuzzParser cbp = new CricBuzzParser("http://mapps.cricbuzz.com/cbzios/match/livematches");
-                cbp.RetrieveURL();
-                cbp.Parse();
-
-                ArrayList<Match> alm = cbp.getMatches();
-                for (Match m :
-                        alm) {
-                    String t1 = "";
-                    String str = m.getScoreCard();
-                    int i = 0;
-                    for (i = 0; i < str.length(); i++) {
-                        if (str.charAt(i) == '-')
-                            break;
-                        t1 = t1 + str.charAt(i);
+                try {
+                    URL url_score = new URL(url);
+                    HttpURLConnection urlConnection = (HttpURLConnection) url_score.openConnection();
+                    //System.out.println(cls.size() + "=size");
+                    try {
+                        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+                        StringBuilder stringBuilder = new StringBuilder();
+                        String line;
+                        while ((line = bufferedReader.readLine()) != null) {
+                            stringBuilder.append(line).append("\n");
+                        }
+                        bufferedReader.close();
+//
+                        s = stringBuilder.toString();
+                    } finally {
+                        urlConnection.disconnect();
                     }
-                    if (i == str.length())
-                        continue;
-                    i++;
-                    String t2 = str.substring(i);
-                    System.out.println(t1);
-                    System.out.println(t2);
-                    cls.add(new Cricket_live_scores(t1, t2, m.getStatus()));
-                }
+                } catch (Exception e) {
+                    Log.e("ERROR", e.getMessage(), e);
 
+                }
                 return null;
             }
-
-
             @Override
             protected void onPostExecute(String s) {
                 Custom_adapter myadapter = new Custom_adapter(cls);
@@ -118,9 +114,5 @@ public class CricketFragment extends Fragment {
         data_fetch data_fetch = new data_fetch();
         data_fetch.execute();
     }
+
 }
-
-
-
-
-
