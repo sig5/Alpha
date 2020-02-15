@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -29,12 +30,18 @@ import java.util.ArrayList;
 import static java.lang.Math.min;
 
 public class FootballFragment extends Fragment {
+    ProgressBar pb;
+
     ArrayList<f_matchlive>fls=new ArrayList<>();
     RecyclerView rv;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_football,container,false);
+        View view;
+
+        view=inflater.inflate(R.layout.fragment_football,container,false);
+        pb=view.findViewById(R.id.progress2);
+        return view;
     }
 
     @Override
@@ -49,10 +56,10 @@ public class FootballFragment extends Fragment {
         rv.setLayoutManager(HorizontalLayout);
         SnapHelper linearSnapHelper = new PagerSnapHelper();
         linearSnapHelper.attachToRecyclerView(rv);
-        jsonfetcher("https://livescore-api.com/api-client/scores/live.json?key=iH22RHhzVqCF2n2Y&secret=C5BdyDOW8pNmsJaLqcNhT5RPvuvySxxu");
+        jsonfetcher("https://livescore-api.com/api-client/scores/live.json?key=iH22RHhzVqCF2n2Y&secret=C5BdyDOW8pNmsJaLqcNhT5RPvuvySxxu",pb);
     }
 
-    private void jsonfetcher(final String url)
+    private void jsonfetcher(final String url,final View view)
     {
         class jsonfetch extends AsyncTask<Void,Void,String>
         {
@@ -71,6 +78,7 @@ String[]  id=new String[100];
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
+                view.setVisibility(View.VISIBLE);
             }
 
             @Override
@@ -157,6 +165,7 @@ String[]  id=new String[100];
                 super.onPostExecute(s);
                 f_custom_adapter custom_adapter=new f_custom_adapter(fls);
                 rv.setAdapter(custom_adapter);
+                view.setVisibility(View.GONE);
             }
         }
         jsonfetch sonfetch=new jsonfetch();
