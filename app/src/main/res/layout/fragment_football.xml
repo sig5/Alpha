@@ -7,15 +7,10 @@
 <!--    android:background="@drawable/ic_userinterface"-->
 
     <!--    tools:context=".MainActivity">-->
-<TextView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:text="football"
-    ></TextView>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="20sp"
         android:layout_marginRight="20sp"
         android:gravity="start"
