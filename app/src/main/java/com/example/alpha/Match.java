@@ -1,10 +1,14 @@
 package com.example.alpha;
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.example.alpha.Commentary;
 import com.example.alpha.CricBuzzParser;
 import com.example.alpha.Innings;
 import com.example.alpha.Team;
 import com.example.alpha.Venue;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.StringTokenizer;
@@ -13,7 +17,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class Match
+public class Match implements Parcelable
 {
 	Venue venue;
 
@@ -80,6 +84,37 @@ public class Match
 		Status = geth("status");
 		ParseScoreCard();
 	}
+
+	protected Match(Parcel in) {
+		bat_team_name = in.readString();
+		bowl_team_name = in.readString();
+		SeriesName = in.readString();
+		MatchID = in.readString();
+		SeriesID = in.readString();
+		DataPath = in.readString();
+		StartTime = in.readString();
+		EndTime = in.readString();
+		MatchDescription = in.readString();
+		Type = in.readString();
+		State = in.readString();
+		StateTitle = in.readString();
+		Toss = in.readString();
+		Status = in.readString();
+		scorecard = in.readString();
+	}
+
+	public static final Creator<Match> CREATOR = new Creator<Match>() {
+		@Override
+		public Match createFromParcel(Parcel in) {
+			return new Match(in);
+		}
+
+		@Override
+		public Match[] newArray(int size) {
+			return new Match[size];
+		}
+	};
+
 	private String geth(String n) throws JSONException
 	{
 		return header.getString(n);
@@ -287,5 +322,29 @@ public class Match
 
 	public Venue getVenue() {
 		return venue;
+	}
+
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeString(bat_team_name);
+		dest.writeString(bowl_team_name);
+		dest.writeString(SeriesName);
+		dest.writeString(MatchID);
+		dest.writeString(SeriesID);
+		dest.writeString(DataPath);
+		dest.writeString(StartTime);
+		dest.writeString(EndTime);
+		dest.writeString(MatchDescription);
+		dest.writeString(Type);
+		dest.writeString(State);
+		dest.writeString(StateTitle);
+		dest.writeString(Toss);
+		dest.writeString(Status);
+		dest.writeString(scorecard);
 	}
 }

@@ -85,7 +85,7 @@ public class CricBuzzParser
 		}
 		catch (JSONException e)
 		{
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 			return null;
 		}
 

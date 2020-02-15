@@ -3,7 +3,9 @@ package com.example.alpha;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class Innings {
+import java.io.Serializable;
+
+public class Innings implements Serializable {
 
     String innscore;
     String wickets;

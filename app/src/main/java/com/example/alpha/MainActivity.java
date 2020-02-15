@@ -51,10 +51,6 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView bnv = findViewById(R.id.bottom_nav);
         bnv.setOnNavigationItemSelectedListener(navListener);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment,new CricketFragment(),"C").commit();
-//        getSupportFragmentManager().beginTransaction().add(new CricketFragment(),"C").commit();
-//          if(getSupportFragmentManager().findFragmentByTag("C")!=null)
-//        getSupportFragmentManager().beginTransaction().show(getSupportFragmentManager().findFragmentByTag("C")).commit();
-
     }
 
     TreeMap<Integer, Fragment> map = new TreeMap<Integer, Fragment>();
