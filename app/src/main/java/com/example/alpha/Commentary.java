@@ -11,11 +11,13 @@ public class Commentary
     class CommPOJO{
         public String timestamp;
         public String comm;
-
+        public String over;
         @Override
         public String toString()
-        {
-            return "Time : " + timestamp + ", " + "Commentary : " + comm;
+                {
+                    if(over!=null)
+            return over+" : "+comm;
+                    return comm;
         }
     }
 
@@ -45,6 +47,8 @@ public class Commentary
                 CommPOJO cm = new CommPOJO();
                 cm.timestamp = comm_line.getString("timestamp");
                 cm.comm = comm_line.getString("comm");
+                if(comm_line.has("o_no"))
+                    cm.over=comm_line.getString("o_no");
                 comm_lines.add(cm);
 
             }

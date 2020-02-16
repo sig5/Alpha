@@ -1,18 +1,324 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="200sp"
+        app:layout_constraintBottom_toTopOf="@+id/scroll"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:gravity="center"
+                android:stretchColumns="1">
+
+                <TextView
+                    android:id="@+id/Score"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_column="1"
+                    android:layout_gravity="left"
+                    android:layout_weight="1"
+                    android:text="Score" />
+
+                <TextView
+                    android:id="@+id/Crr"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_column="2"
+                    android:layout_gravity="right"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:text="CRR" />
+
+            </TableRow>
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:stretchColumns="1">
+
+                <TextView
+                    android:id="@+id/Status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_column="1"
+                    android:layout_gravity="left"
+                    android:layout_weight="1"
+                    android:text="Status" />
+
+                <TextView
+                    android:id="@+id/Partnership"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_column="2"
+                    android:layout_gravity="right"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:text="PS" />
+
+            </TableRow>
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:gravity="center"
+                android:stretchColumns="1">
+
+                <TextView
+                    android:id="@+id/Batsmen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_column="1"
+                    android:layout_weight="1"
+                    android:text="Batsmen" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_column="2"
+                    android:layout_weight="1"
+                    android:text="Runs" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_column="1"
+                    android:layout_weight="1"
+                    android:text="Balls" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_column="1"
+                    android:layout_weight="1"
+                    android:text="6's" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_column="1"
+                    android:layout_weight="1"
+                    android:text="4's" />
+
+            </TableRow>
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:stretchColumns="1">
+
+                <TextView
+                    android:id="@+id/Batsman1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_column="1"
+                    android:layout_weight="1"
+                    android:text="Batsmen1" />
+
+                <TextView
+                    android:id="@+id/runs1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_column="2"
+                    android:layout_weight="1"
+                    android:text="Runs1" />
+                <TextView
+                    android:id="@+id/balls1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_column="1"
+                    android:layout_weight="1"
+                    android:text="Balls1" />
+                <TextView
+                    android:id="@+id/six1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_column="1"
+                    android:layout_weight="1"
+                    android:text="6's" />
+                <TextView
+                    android:id="@+id/four1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_column="1"
+                    android:layout_weight="1"
+                    android:text="4's" />
+
+            </TableRow>
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:gravity="center"
+                android:stretchColumns="1">
+
+                <TextView
+                    android:id="@+id/Batsmen2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_column="1"
+                    android:layout_weight="1"
+                    android:text="Batsmen2" />
+
+                <TextView
+                    android:id="@+id/runs2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_column="2"
+                    android:layout_weight="1"
+                    android:text="Runs2" />
+                <TextView
+                    android:id="@+id/balls2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_column="1"
+                    android:layout_weight="1"
+                    android:text="Balls" />
+                <TextView
+                    android:id="@+id/six2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_column="1"
+                    android:layout_weight="1"
+                    android:text="6's" />
+                <TextView
+                    android:id="@+id/four2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_column="1"
+                    android:layout_weight="1"
+                    android:text="4's" />
+
+            </TableRow>
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:stretchColumns="1">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_column="1"
+                    android:layout_weight="1"
+                    android:text="Bowler" />
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_column="2"
+                    android:layout_weight="1"
+                    android:text="Overs" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_column="1"
+                    android:layout_weight="1"
+                    android:text="Maidens" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_column="1"
+                    android:layout_weight="1"
+                    android:text="Runs" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_column="1"
+                    android:layout_weight="1"
+                    android:text="Wickets" />
+
+            </TableRow>
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:gravity="center"
+                android:stretchColumns="1">
+
+                <TextView
+                    android:id="@+id/Bowler"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_column="1"
+                    android:layout_weight="1"
+                    android:text="Batsmen" />
+
+                <TextView
+                    android:id="@+id/overs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_column="2"
+                    android:layout_weight="1"
+                    android:text="Runs" />
+                <TextView
+                    android:id="@+id/maidens"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_column="1"
+                    android:layout_weight="1"
+                    android:text="Balls" />
+                <TextView
+                    android:id="@+id/bruns"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_column="1"
+                    android:layout_weight="1"
+                    android:text="6's" />
+                <TextView
+                    android:id="@+id/wickets"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_column="1"
+                    android:layout_weight="1"
+                    android:text="4's" />
+
+            </TableRow>
+        </TableLayout>
+    </androidx.cardview.widget.CardView>
+
     <ScrollView
 
+        android:id="@+id/scroll"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView"
+        app:layout_constraintVertical_bias="0.056">
+
         <TextView
             android:id="@+id/commentary"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_width="match_parent">
-        </TextView>
+            android:lineSpacingExtra="1.5dp"
+            android:textSize="14dp"></TextView>
     </ScrollView>
 
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

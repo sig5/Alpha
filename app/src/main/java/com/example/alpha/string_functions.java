@@ -2,7 +2,7 @@ package com.example.alpha;
 
 public class string_functions {
     public static String[] split_Score(String data) {
-        String[] str = data.split("-");
+        String[] str = data.split("\n",-2);
         return str;
     }
 

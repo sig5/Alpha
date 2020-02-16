@@ -2,6 +2,7 @@ package com.example.alpha;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.Fragment;
 
 import java.io.Serializable;
@@ -54,8 +56,10 @@ public class Cric_Commentary extends Fragment implements Serializable {
             protected String doInBackground(Void... voids) {
 //
                 Commentary c=m.getCommentary();
+
                 comm[0] =c.toString();
-                System.out.println(c);
+                System.out.println(comm[0]);
+
 
                 return null;
             }
@@ -63,8 +67,14 @@ public class Cric_Commentary extends Fragment implements Serializable {
 
             @Override
             protected void onPostExecute(String s) {
+                //String str="";
+                String[] lines=string_functions.split_Score(comm[0]);
+                //System.out.println(HtmlCompat.fromHtml(comm[0], 0));
+                for(int i=0;i<lines.length;i++)
+                {    sv.append("\n\n");
+                    sv.append(HtmlCompat.fromHtml(lines[i], 0));
+                }
 
-                sv.setText(comm[0]);
 //                view.setVisibility(View.GONE);
             }
         }

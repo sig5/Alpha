@@ -42,14 +42,14 @@ public class CricBuzzParser
 		{
 			URL url = new URL(u);
 			String responseJsonString="";
-//			System.out.println("in Cricbuzz parser"+u+"1st");
+			System.out.println("in Cricbuzz parser"+u+"1st");
 			HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 			try {
-//				System.out.println("in Cricbuzz parser"+u+"2nd");
+				System.out.println("in Cricbuzz parser"+u+"2nd");
 				BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
                             StringBuilder responseString = new StringBuilder();
 				String line;
-//				System.out.println("in Cricbuzz parser"+u);
+				System.out.println("in Cricbuzz parser"+u);
 				while ((line = bufferedReader.readLine()) != null) {
 					responseString.append(line);
 				}
@@ -64,14 +64,14 @@ public class CricBuzzParser
 		catch(Exception except)
 		{
 //			System.out.println("jnakcdakcmalncsa");
-			System.out.println(except.getMessage());
+			System.out.println(except.getMessage()+"Ëxc");
 
 			return null;
 		}
 	}
 	private static String getCommentaryURL(String mid)
 	{
-		String urlCommentary = "http://mapps.cricbuzz.com/cbzios/match/" + mid + "/commentary";
+		String urlCommentary = "https://mapps.cricbuzz.com/cbzios/match/"+mid+"/commentary";
 		return urlCommentary;
 	}
 	public static Commentary RetrieveCommentary(Match m)
