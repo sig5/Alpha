@@ -130,6 +130,7 @@ String[]  id=new String[100];
                         {
                             continue;
                         }
+                        // commit
                         else { JSONObject jsonObject1stats=jsonObject2.getJSONObject("data");
                             red[i] = jsonObject1stats.getString("red_cards");
                             yellow[i] = jsonObject1stats.getString("yellow_cards");
