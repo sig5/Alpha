@@ -12,11 +12,8 @@ public class Venue {
 	
 	public Venue(JSONObject v) throws JSONException 
 	{
-		timezone = v.getString("timezone");
 		GroundName = v.getString("name");
 		Location = v.getString("location");
-		latitude = v.getString("lat");
-		longitutde = v.getString("long");
 	}
 	public void print()
 	{

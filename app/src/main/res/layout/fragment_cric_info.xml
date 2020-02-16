@@ -3,9 +3,25 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
     <TextView
-        android:id="@+id/infotext"
+        android:id="@+id/series"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Info"></TextView>
+        android:text="Series"></TextView>
+    <TextView
+        android:id="@+id/desc"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Desc"></TextView>
+    <TextView
+        android:id="@+id/toss"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Toss"></TextView>
+    <TextView
+        android:id="@+id/Venue"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Venue"></TextView>
+
 
 </LinearLayout>

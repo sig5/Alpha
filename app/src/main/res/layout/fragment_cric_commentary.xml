@@ -8,7 +8,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
-        android:layout_height="200sp"
+        android:layout_height="230sp"
         app:layout_constraintBottom_toTopOf="@+id/scroll"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -23,8 +23,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="match_parent"
                 android:paddingLeft="4dp"
-                android:paddingRight="4dp"
-                android:gravity="center"
+                android:paddingRight="8dp"
                 android:stretchColumns="1">
 
                 <TextView
@@ -47,12 +46,16 @@
                     android:text="CRR" />
 
             </TableRow>
+            <TableRow>
+                <TextView>
+
+                </TextView>
+            </TableRow>
             <TableRow
                 android:layout_width="fill_parent"
                 android:layout_height="match_parent"
-                android:gravity="center"
                 android:paddingLeft="4dp"
-                android:paddingRight="4dp"
+                android:paddingRight="8dp"
                 android:stretchColumns="1">
 
                 <TextView
@@ -75,13 +78,18 @@
                     android:text="PS" />
 
             </TableRow>
+            <TableRow>
+                <TextView>
+
+                </TextView>
+            </TableRow>
             <TableRow
                 android:layout_width="fill_parent"
                 android:layout_height="match_parent"
                 android:paddingLeft="4dp"
-                android:paddingRight="4dp"
-                android:gravity="center"
-                android:stretchColumns="1">
+                android:stretchColumns="1"
+                android:paddingRight="8dp"
+                >
 
                 <TextView
                     android:id="@+id/Batsmen"
@@ -96,13 +104,13 @@
                     android:layout_height="fill_parent"
                     android:layout_column="2"
                     android:layout_weight="1"
-                    android:text="Runs" />
+                    android:text="R" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="fill_parent"
                     android:layout_column="1"
                     android:layout_weight="1"
-                    android:text="Balls" />
+                    android:text="B" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="fill_parent"
@@ -115,12 +123,17 @@
                     android:layout_column="1"
                     android:layout_weight="1"
                     android:text="4's" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_column="1"
+                    android:layout_weight="1"
+                    android:text="SR" />
 
             </TableRow>
             <TableRow
                 android:layout_width="fill_parent"
                 android:layout_height="match_parent"
-                android:gravity="center"
                 android:paddingLeft="4dp"
                 android:paddingRight="4dp"
                 android:stretchColumns="1">
@@ -161,6 +174,13 @@
                     android:layout_column="1"
                     android:layout_weight="1"
                     android:text="4's" />
+                <TextView
+                    android:id="@+id/sr1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_column="1"
+                    android:layout_weight="1"
+                    android:text="SR1" />
 
             </TableRow>
             <TableRow
@@ -168,7 +188,6 @@
                 android:layout_height="match_parent"
                 android:paddingLeft="4dp"
                 android:paddingRight="4dp"
-                android:gravity="center"
                 android:stretchColumns="1">
 
                 <TextView
@@ -176,43 +195,48 @@
                     android:layout_width="wrap_content"
                     android:layout_height="fill_parent"
                     android:layout_column="1"
-                    android:layout_weight="1"
-                    android:text="Batsmen2" />
+                    android:layout_weight="1" />
 
                 <TextView
                     android:id="@+id/runs2"
                     android:layout_width="wrap_content"
                     android:layout_height="fill_parent"
                     android:layout_column="2"
-                    android:layout_weight="1"
-                    android:text="Runs2" />
+                    android:layout_weight="1" />
                 <TextView
                     android:id="@+id/balls2"
                     android:layout_width="wrap_content"
                     android:layout_height="fill_parent"
                     android:layout_column="1"
-                    android:layout_weight="1"
-                    android:text="Balls" />
+                    android:layout_weight="1" />
                 <TextView
                     android:id="@+id/six2"
                     android:layout_width="wrap_content"
                     android:layout_height="fill_parent"
                     android:layout_column="1"
-                    android:layout_weight="1"
-                    android:text="6's" />
+                    android:layout_weight="1" />
                 <TextView
                     android:id="@+id/four2"
                     android:layout_width="wrap_content"
                     android:layout_height="fill_parent"
                     android:layout_column="1"
-                    android:layout_weight="1"
-                    android:text="4's" />
+                    android:layout_weight="1" />
+                <TextView
+                    android:id="@+id/sr2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_column="1"
+                    android:layout_weight="1" />
 
+            </TableRow>
+            <TableRow>
+                <TextView>
+
+                </TextView>
             </TableRow>
             <TableRow
                 android:layout_width="fill_parent"
                 android:layout_height="match_parent"
-                android:gravity="center"
                 android:paddingLeft="4dp"
                 android:paddingRight="4dp"
                 android:stretchColumns="1">
@@ -230,25 +254,31 @@
                     android:layout_height="fill_parent"
                     android:layout_column="2"
                     android:layout_weight="1"
-                    android:text="Overs" />
+                    android:text="O" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="fill_parent"
                     android:layout_column="1"
                     android:layout_weight="1"
-                    android:text="Maidens" />
+                    android:text="M" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="fill_parent"
                     android:layout_column="1"
                     android:layout_weight="1"
-                    android:text="Runs" />
+                    android:text="R" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="fill_parent"
                     android:layout_column="1"
                     android:layout_weight="1"
-                    android:text="Wickets" />
+                    android:text="W" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_column="1"
+                    android:layout_weight="1"
+                    android:text="ER" />
 
             </TableRow>
             <TableRow
@@ -256,7 +286,6 @@
                 android:layout_height="match_parent"
                 android:paddingLeft="4dp"
                 android:paddingRight="4dp"
-                android:gravity="center"
                 android:stretchColumns="1">
 
                 <TextView
@@ -295,6 +324,13 @@
                     android:layout_column="1"
                     android:layout_weight="1"
                     android:text="4's" />
+                <TextView
+                    android:id="@+id/er1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_column="1"
+                    android:layout_weight="1"
+                    android:text="ER1" />
 
             </TableRow>
         </TableLayout>

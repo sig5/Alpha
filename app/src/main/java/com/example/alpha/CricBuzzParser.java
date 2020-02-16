@@ -36,7 +36,7 @@ public class CricBuzzParser
 	{
 		resp = getContentsOfURL(this.url);
 	}
-	private static String getContentsOfURL(String u)
+	protected static String getContentsOfURL(String u)
 	{
 		try
 		{

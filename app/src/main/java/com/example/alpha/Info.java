@@ -1,7 +1,6 @@
 package com.example.alpha;
 
 public class Info {
-    String team1,team2;
     String toss;
     String series_name;
     String match_desc;

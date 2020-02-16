@@ -50,11 +50,7 @@ public class Commentary
                 if(comm_line.has("o_no"))
                     cm.over=comm_line.getString("o_no");
                 comm_lines.add(cm);
-
             }
-
-            //System.out.println(scorecard);
         }
-
     }
 }
