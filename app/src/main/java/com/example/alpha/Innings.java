@@ -33,5 +33,5 @@ public class Innings implements Serializable {
     public String getOvers() {
         return overs;
     }
-
+//ns
 }
