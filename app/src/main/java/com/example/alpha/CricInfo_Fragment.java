@@ -41,7 +41,7 @@ public class CricInfo_Fragment extends Fragment implements Serializable {
         return view;
 
     }
-  //vgvg
+  //vgvgfujd
     private void data_fetcher(final String url) {
 
         final String[] comm = new String[1];
