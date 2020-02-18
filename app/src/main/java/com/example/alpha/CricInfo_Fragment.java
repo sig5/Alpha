@@ -19,6 +19,9 @@ import java.io.InputStreamReader;
 import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
+import static com.example.alpha.Info.squads;
+
 //jbjf
 public class CricInfo_Fragment extends Fragment implements Serializable {
     Match m;
@@ -61,7 +64,6 @@ public class CricInfo_Fragment extends Fragment implements Serializable {
 
 
                 try {
-                    //fock off
                     URL url = new URL("https://mapps.cricbuzz.com/cbzios/match/"+m.getMatchID());
                     String responseJsonString = "";
 //                    System.out.println("in Cricbuzz parser" + u + "1st");
@@ -79,6 +81,8 @@ public class CricInfo_Fragment extends Fragment implements Serializable {
                         bufferedReader.close();
                         responseJsonString = responseString.toString();
 
+                        String[] squad=squads(responseJsonString);
+
                         JSONObject obj=new JSONObject(responseJsonString);
                         JSONObject objOff=obj.getJSONObject("official");
                         JSONObject objVenue=obj.getJSONObject("venue");
@@ -86,15 +90,17 @@ public class CricInfo_Fragment extends Fragment implements Serializable {
                         venue1+=objVenue.getString("location");
                         umpires1+=objOff.getJSONObject("umpire1").getString("name")+",";
                         umpires1+=objOff.getJSONObject("umpire2").getString("name");
-                        thirdumpire1+=objOff.getJSONObject("umpire3").getString("name");
 
+
+
+
+                        thirdumpire1+=objOff.getJSONObject("umpire3").getString("name");
                         refree1+=objOff.getJSONObject("referee").getString("name");
 
                     } finally {
                         urlConnection.disconnect();
                     }
                 } catch (Exception except) {
-//			System.out.println("jnakcdakcmalncsa");
                     System.out.println(except.getMessage() + "Ëxc");
                 }
 
