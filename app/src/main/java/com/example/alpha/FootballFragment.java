@@ -62,7 +62,7 @@ public class FootballFragment extends Fragment {
     private void jsonfetcher(final String url,final View view)
     {
         class jsonfetch extends AsyncTask<Void,Void,String>
-        {
+        { //match
  JSONArray football_match;
 String[] scores=new String[100];
 String[] team1=new String[100];
