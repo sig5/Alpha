@@ -4,23 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/grd1"
+    android:background="#FF9100"
     tools:context=".Cric_Match_Details">
 
     <FrameLayout
         android:id="@+id/fragment_cric_match_details"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/bottom_nav_cric_match_details"/>
+        android:layout_above="@+id/bottom_nav_cric_match_details" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav_cric_match_details"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="#E8409FAF"
+        android:background="#E8FFFFFF"
         app:menu="@menu/bottom_nav_cric_match_details" />
-
 
 
 </RelativeLayout>

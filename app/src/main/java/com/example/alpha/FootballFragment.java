@@ -1,5 +1,6 @@
 package com.example.alpha;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.PagerSnapHelper;
@@ -47,8 +49,14 @@ public class FootballFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        
+        CardView cardView=view.findViewById(R.id.fixtures);
         rv=(RecyclerView)view.findViewById(R.id.recyclerView);
+        cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(),fixtures.class));
+            }
+        });
 
                 LinearLayoutManager RecyclerViewLayoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
         rv.setLayoutManager(RecyclerViewLayoutManager);
@@ -56,7 +64,7 @@ public class FootballFragment extends Fragment {
         rv.setLayoutManager(HorizontalLayout);
         SnapHelper linearSnapHelper = new PagerSnapHelper();
         linearSnapHelper.attachToRecyclerView(rv);
-        jsonfetcher("https://livescore-api.com/api-client/scores/live.json?key=iH22RHhzVqCF2n2Y&secret=C5BdyDOW8pNmsJaLqcNhT5RPvuvySxxu",pb);
+        jsonfetcher("https://livescore-api.com/api-client/scores/live.json?key=Zolh7iHZ07TuFWHU&secret=gDLT2b6VNoLD99x9xTrFc8EcgyHVuoQL",pb);
     }
 
     private void jsonfetcher(final String url,final View view)

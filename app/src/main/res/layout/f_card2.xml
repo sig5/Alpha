@@ -5,7 +5,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cview"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="27sp"
+    android:layout_marginLeft="16sp"
+    android:layout_marginRight="16sp"
+    android:layout_marginBottom="8sp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -16,11 +20,14 @@
             android:id="@+id/team1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="70dp"
+            android:layout_marginTop="16dp"
             android:animateLayoutChanges="true"
+            android:fontFamily="@font/mbold"
+            android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            android:gravity="center|center_horizontal">
 
         </TextView>
 
@@ -30,9 +37,12 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:animateLayoutChanges="true"
+            android:fontFamily="@font/mbold"
+            android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/team1">
+            app:layout_constraintTop_toBottomOf="@+id/team1"
+            android:gravity="center|center_horizontal">
 
         </TextView>
 
@@ -41,8 +51,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
             android:animateLayoutChanges="true"
+            android:fontFamily="@font/mm"
+            android:gravity="center|center_horizontal"
             android:text="TextView"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toTopOf="@+id/possession"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/team2" />
@@ -53,6 +68,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:animateLayoutChanges="true"
+            android:gravity="center|center_horizontal"
             android:text="TextView"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
@@ -70,7 +86,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/possession" />
+            app:layout_constraintTop_toBottomOf="@+id/possession"
+            android:gravity="center|center_horizontal"/>
 
         <TextView
             android:id="@+id/corners"
@@ -83,7 +100,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fauls" />
+            app:layout_constraintTop_toBottomOf="@+id/fauls"
+            android:gravity="center|center_horizontal"/>
 
         <TextView
             android:id="@+id/penalty"
@@ -96,7 +114,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/corners" />
+            app:layout_constraintTop_toBottomOf="@+id/corners"
+            android:gravity="center|center_horizontal"/>
 
         <TextView
             android:id="@+id/redc"
@@ -109,7 +128,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/penalty" />
+            app:layout_constraintTop_toBottomOf="@+id/penalty"
+            android:gravity="center|center_horizontal"/>
 
         <TextView
             android:id="@+id/yellowc"
@@ -118,7 +138,9 @@
             android:layout_marginStart="1dp"
             android:layout_marginLeft="1dp"
             android:layout_marginTop="32dp"
+            android:layout_marginBottom="16dp"
             android:animateLayoutChanges="true"
+            android:gravity="center|center_horizontal"
             android:text="TextView"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
