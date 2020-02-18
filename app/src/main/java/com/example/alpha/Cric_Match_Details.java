@@ -58,7 +58,7 @@ public class Cric_Match_Details extends AppCompatActivity implements Serializabl
                 case R.id.nav_cric_1: {
 
 
-                    selectedFragment = new CricInfo_Fragment();
+                    selectedFragment = new CricInfo_Fragment(match);
                     if (getSupportFragmentManager().findFragmentByTag("I") == null) {
                         getSupportFragmentManager().beginTransaction().add(R.id.fragment_cric_match_details, selectedFragment, "I").commit();
                         if (getSupportFragmentManager().findFragmentByTag("L") != null)

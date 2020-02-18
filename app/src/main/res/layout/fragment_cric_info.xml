@@ -2,26 +2,45 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/match_des"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <TextView
         android:id="@+id/series"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Series"></TextView>
+        android:layout_height="wrap_content" />
+
     <TextView
-        android:id="@+id/desc"
+        android:id="@+id/Toss"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Desc"></TextView>
+        android:layout_height="wrap_content" />
+
     <TextView
-        android:id="@+id/toss"
+        android:id="@+id/stadium"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Toss"></TextView>
+        android:layout_height="wrap_content" />
+
     <TextView
         android:id="@+id/Venue"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Venue"></TextView>
+        android:layout_height="wrap_content" />
 
+    <TextView
+        android:id="@+id/umpires"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
+    <TextView
+        android:id="@+id/thirdumpire"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/refree"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 </LinearLayout>

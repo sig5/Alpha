@@ -17,7 +17,7 @@ public class Venue {
 	}
 	public void print()
 	{
-		System.out.println("Time Zone : " + timezone + ", Ground Name " + GroundName + ", Location : " +Location + "" + "");
+		System.out.println( "Ground Name " + GroundName + "- Location : " +Location + "" + "");
 	}
 	public String getTimezone() {
 		return timezone;

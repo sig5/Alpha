@@ -321,6 +321,9 @@ public class Match implements Parcelable
 	}
 
 	public Venue getVenue() {
+
+		venue.print();
+		//venue = new Venue(matchData.getJSONObject("venue"));
 		return venue;
 	}
 
