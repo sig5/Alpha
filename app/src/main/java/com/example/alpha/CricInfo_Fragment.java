@@ -61,6 +61,7 @@ public class CricInfo_Fragment extends Fragment implements Serializable {
 
 
                 try {
+                    //fock off
                     URL url = new URL("https://mapps.cricbuzz.com/cbzios/match/"+m.getMatchID());
                     String responseJsonString = "";
 //                    System.out.println("in Cricbuzz parser" + u + "1st");
