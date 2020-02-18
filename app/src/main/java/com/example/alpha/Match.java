@@ -208,7 +208,7 @@ public class Match implements Parcelable
 		score.append(s1+"-");
 		score.append(s2);
 
-
+		       //faltu
 		InningsHashMap = InningsToBeSorted;
 		scorecard = score.toString();
 //		System.out.println(scorecard);
