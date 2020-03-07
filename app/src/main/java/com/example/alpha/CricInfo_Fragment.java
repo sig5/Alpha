@@ -5,10 +5,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.Fragment;
 
@@ -19,31 +22,84 @@ import java.io.InputStreamReader;
 import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 
 import static com.example.alpha.Info.squads;
 
 //jbjf
 public class CricInfo_Fragment extends Fragment implements Serializable {
     Match m;
-    TextView des, series, toss, stadium, venue, umpires, thirdumpire, refree;
+    TextView tname1,tname2;
+    ListView lv,lvt1,lvt2;
+    String t1="",t2="";
+//    String[] squad1=new String[25];
+    ArrayList<String> squad1=new ArrayList<>();
+
+    ArrayList<String> squad2=new ArrayList<>();
+    CardView c1,c2;
     String des1="Match Description: ", series1="Series: ", toss1="Toss: ", stadium1="Stadium: ", venue1="City: ", umpires1="Umpires: ", thirdumpire1="Third Umpire: ", refree1="Refree: ";
   //jbhvhbbfhb
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_cric_info, container, false);
-        des = view.findViewById(R.id.match_des);
-        series = view.findViewById(R.id.series);
-        toss = view.findViewById(R.id.Toss);
-        stadium = view.findViewById(R.id.stadium);
-        venue = view.findViewById(R.id.Venue);
-        umpires = view.findViewById(R.id.umpires);
-        thirdumpire = view.findViewById(R.id.thirdumpire);
-        refree = view.findViewById(R.id.refree);
+        lv=view.findViewById(R.id.details);
+        lvt1=view.findViewById(R.id.squad1);
+        lvt2=view.findViewById(R.id.squad2);
+        tname1=view.findViewById(R.id.name1);
+
+        c1=view.findViewById(R.id.cd1);
+        c2=view.findViewById(R.id.cd2);
+        tname2=view.findViewById(R.id.name2);
         data_fetcher(" ");
         return view;
 
     }
+
+
+
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        tname1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(lvt1.getVisibility()==View.GONE)
+                {
+                    lvt1.setVisibility(View.VISIBLE);
+                }
+                else
+                {
+                    lvt1.setVisibility(View.GONE);
+//                    tname1.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
+        tname2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(lvt2.getVisibility()==View.GONE)
+                {
+                    lvt2.setVisibility(View.VISIBLE);
+//                    tname2.setVisibility(View.GONE);
+                }
+                else
+                {
+                    lvt2.setVisibility(View.GONE);
+//                    tname2.setVisibility(View.VISIBLE);
+                }
+
+
+            }
+        });
+
+    }
+
+
+
+
   //vgvgfujd
     private void data_fetcher(final String url) {
 
@@ -82,7 +138,25 @@ public class CricInfo_Fragment extends Fragment implements Serializable {
                         responseJsonString = responseString.toString();
 
                         String[] squad=squads(responseJsonString);
+                        t1=squad[0];
 
+                        int j=0,i=1;
+                        while(squad[i]!="SPLIT")
+                        {
+                            squad1.add(squad[i]);
+                            i++;
+
+                        }
+
+
+                        i++;
+                        t2=squad[i];
+                        i++;
+                        while(i<squad.length && squad[i]!=null)
+                        {
+                            squad2.add(squad[i]);
+                            i++;
+                        }
                         JSONObject obj=new JSONObject(responseJsonString);
                         JSONObject objOff=obj.getJSONObject("official");
                         JSONObject objVenue=obj.getJSONObject("venue");
@@ -93,6 +167,9 @@ public class CricInfo_Fragment extends Fragment implements Serializable {
 
 
 
+                        System.out.println(squad1);
+
+                        System.out.println(squad2);
 
                         thirdumpire1+=objOff.getJSONObject("umpire3").getString("name");
                         refree1+=objOff.getJSONObject("referee").getString("name");
@@ -111,23 +188,37 @@ public class CricInfo_Fragment extends Fragment implements Serializable {
 
             @Override
             protected void onPostExecute(String s) {
-                //v.print();
-                System.out.println("fbhvhfj");
-                des.append(des1);
-                series.append(series1);
-                toss.append(toss1);
-                stadium.append(stadium1);
-                venue.append(venue1);
-                umpires.append(umpires1);
-                thirdumpire.append(thirdumpire1);
-                refree.append(refree1);
+
+                System.out.println("yaha");
+                String[] details=new String[8];
+                details[0]=(des1);
+
+                details[1]=(series1);
+                details[2]=(toss1);
+                details[3]=(stadium1);
+                details[4]=(venue1);
+                details[5]=(umpires1);
+                details[6]=(thirdumpire1);
+                details[7]=(refree1);
+                tname1.setText(t1);
+                tname2.setText(t2);
+                ArrayAdapter<String> adapter=new ArrayAdapter<String>(getContext(),R.layout.row,R.id.row,details);
+
+                ArrayAdapter<String> adapter1=new ArrayAdapter<String>(getContext(),R.layout.row,R.id.row,squad1);
+                ArrayAdapter<String> adapter2=new ArrayAdapter<String>(getContext(),R.layout.row,R.id.row,squad2);
+                lv.setAdapter(adapter);
+                lvt1.setAdapter(adapter1);
+                lvt2.setAdapter(adapter2);
+
 //                view.setVisibility(View.GONE);
             }
         }
         data_fetch data_fetch = new data_fetch();
         data_fetch.execute();
     }
-    //hello
+
+
+
 
     CricInfo_Fragment(Match m) {
         this.m = m;

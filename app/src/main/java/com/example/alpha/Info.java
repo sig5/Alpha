@@ -37,8 +37,6 @@ public class Info {
         int l2=sq2.length();
         for(int i=0;i<l2;i++)
             squad_team1[j++]=playerid.get(sq2.getInt(i));
-        for(int i=0;i<j;i++)
-            System.out.print(squad_team1[i]+" ");
         return squad_team1;
 
     }
